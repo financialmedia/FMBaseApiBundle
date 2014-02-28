@@ -1,0 +1,11 @@
+parameters:
+  fm_api.security.user_encoder.class: FM\BaseApiBundle\Security\UserEncoder
+  fm_api.security.security_context.class: FM\BaseApiBundle\Security\SecurityContext
+
+services:
+  fm_api.security.user_encoder:
+    class: %fm_api.security.user_encoder.class%
+    arguments: [%secret%]
+
+  fm_api.security.security_context:
+    class: %fm_api.security.security_context.class%
