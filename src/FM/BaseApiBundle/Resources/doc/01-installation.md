@@ -1,0 +1,65 @@
+## Installation
+
+Install using composer:
+
+```
+composer require "fm/base-api-bundle"
+```
+
+Enable the bundle in the kernel:
+
+```php
+// app/AppKernel.php
+$bundles[] = new FM\BaseApiBundle\FMBaseApiBundle();
+```
+
+## Configuration
+
+Define the api host, and the host where the keystone token can be obtained.
+Most of the time these will be the same.
+
+```yaml
+# app/config/config.yml
+fm_base_api:
+  host: %api_host%
+  token_host: %api_host%
+```
+
+Add routing for both your own ApiBundle and Keystone's bundle:
+
+```yaml
+# app/config/routing.yml
+fm_api:
+  resource: "@AcmeApiBundle/Controller/"
+  type:     annotation
+  prefix:   /v1/
+  requirements: { domain: %api_host% }
+  defaults: { domain: %api_host% }
+fm_keystone:
+  resource: @FMKeystoneBundle/Resources/config/routing.yml
+  host:     "{domain}"
+  requirements: { domain: %api_host% }
+```
+
+Make sure you enable a firewall for the Keystone tokens url. You can leave your
+Api open, but most of the time you'll want to secure it. To do so, simply enable
+a different firewall with the `keystone-token` option set. Also don't forget to
+make it stateless so no cookies will be sent!
+
+```yaml
+# app/config/security.yml
+security:
+  firewalls:
+    tokens:
+      pattern:       ^/tokens
+      host:          %api_host%
+      stateless:     true
+      keystone-user: ~
+    api:
+      pattern:        ^/
+      host:           %api_host%
+      anonymous:      true
+      stateless:      true
+      keystone-token: ~
+```
+
