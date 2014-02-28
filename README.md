@@ -3,7 +3,7 @@ FMBaseApiBundle
 
 Base bundle for Api functionality
 
-[![Build Status](https://magnum.travis-ci.com/financial-media/FMBaseApiBundle.png?token=mjhD8pkxNRXsQSymzzes)](https://magnum.travis-ci.com/financial-media/FMBaseApiBundle)
+[![Build Status](https://travis-ci.org/financial-media/FMBaseApiBundle.png?branch=master)](https://travis-ci.org/financial-media/FMBaseApiBundle)
 
 ## Documentation
 
