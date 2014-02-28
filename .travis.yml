@@ -4,7 +4,7 @@ php:
   - 5.5
 
 before_script:
-  - composer self-update --no-interaction --quit
+  - composer self-update --no-interaction --quiet
   - composer install --no-interaction
 
 script: phpunit --coverage-text
