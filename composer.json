@@ -18,7 +18,8 @@
         "php": ">=5.5",
         "symfony/symfony": "~2.3",
         "doctrine/orm": "~2.3",
-        "jms/serializer": "~0.14"
+        "jms/serializer": "~0.14",
+        "fm/keystone-bundle": "~0.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7",
