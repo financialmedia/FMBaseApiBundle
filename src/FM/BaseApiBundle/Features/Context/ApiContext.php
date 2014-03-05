@@ -120,10 +120,15 @@ class ApiContext extends BaseFeatureContext
      */
     public function theResponseIsJson()
     {
-        $this->theResponseHeaderContains('Content-type', 'text/javascript');
+        assertThat(
+            static::$response->headers->get('Content-Type'),
+            logicalOr(
+                equalTo('application/json'),
+                equalTo('text/javascript')
+            )
+        );
 
-        json_decode($this->getResponseContent(), true);
-        assertSame(JSON_ERROR_NONE, json_last_error());
+        assertJson($this->getResponseContent());
     }
 
     /**
@@ -276,6 +281,7 @@ class ApiContext extends BaseFeatureContext
             $headers['X-User-Token'] = static::$userToken;
         }
 
+        // TODO version should be configurable
         return parent::request($method, '/v1/' . ltrim($uri, '/'), $data, $headers, $server);
     }
 
