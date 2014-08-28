@@ -190,7 +190,7 @@ abstract class BaseApiController extends Controller
      */
     protected function getSecurityContext()
     {
-        return $this->get('fm_api.security.context');
+        return $this->get('fm_api.security.security_context');
     }
 
     /**

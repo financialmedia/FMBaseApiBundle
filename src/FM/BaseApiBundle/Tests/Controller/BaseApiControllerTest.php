@@ -19,7 +19,7 @@ class BaseApiControllerTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetNoApiUser()
     {
-        $container = $this->getContainerMock(['fm_api.security.context' => $this->getSecurityContextMock()]);
+        $container = $this->getContainerMock(['fm_api.security.security_context' => $this->getSecurityContextMock()]);
 
         $controller = new ApiControllerMock();
         $controller->setContainer($container);
@@ -30,7 +30,7 @@ class BaseApiControllerTest extends \PHPUnit_Framework_TestCase
     public function testGetApiUser()
     {
         $securityContext = $this->getSecurityContextMock();
-        $container = $this->getContainerMock(['fm_api.security.context' => $securityContext]);
+        $container = $this->getContainerMock(['fm_api.security.security_context' => $securityContext]);
 
         $controller = new ApiControllerMock();
         $controller->setContainer($container);
